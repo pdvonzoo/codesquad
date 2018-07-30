@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>코드스쿼드 테스트</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <input type="text" class="question" id="question">
+            <button onclick="conform()" class="button" id="submit">결과 확인</button>
+            <button onclick="myFunction()" class="button" id="reset">새로 시작</button>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </body>
+    <script>
+        let answer = [];
+        let question = [];
+        let inputResult;
+        let strikeNumber = 0;
+        let ballNumber = 0;
+        let resultTest = strikeNumber + " 스크라이크" + ballNumber + " 볼";
+        
+        
+        function setNumber(){
+            
+            answer[0] = Math.floor(Math.random() * 10);
+            answer[1] = Math.floor(Math.random() * 10);
+            answer[2] = Math.floor(Math.random() * 10);
+            
+            console.log(answer)
+        }
+        
+        function conform(){
+            
+            inputResult = document.getElementById("question").value;
+            question = inputResult.split("");
+            checkResult();
+            
+        }
+        
+        function checkResult() {
+            
+            if(answer.length === question.length){
+                
+            } else {
+                document.getElementById("feedback").innerText = "세자리 숫자를 입력해주세요.";
+            }
+        
+        
+        
+        setNumber();
+        
+    </script>
+</html>

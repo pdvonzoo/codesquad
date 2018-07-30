@@ -1,0 +1,29 @@
+.wrapper{
+    padding: 200px;
+}
+.wrapper .question{
+    padding: 10px;
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
+    outline: none;
+}
+.wrapper .button{
+    vertical-align: top;
+    margin: 0px 5px;
+    border: 0;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    padding-top: 3px;
+    outline: 0;
+    cursor: pointer;
+    color: #040404;
+}
+.wrapper .button:hover{
+    background-color: #ddd;
+    color: #fff;
+}
+.wrapper .feedback{
+    margin-top: 20px;
+    font-size: 13px;
+}
