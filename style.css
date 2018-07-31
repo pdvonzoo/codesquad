@@ -1,8 +1,12 @@
 /* line 1, /Users/hiwilco/Desktop/codesquad/style.scss */
+h1 {
+  margin: 10px 0; }
+
+/* line 4, /Users/hiwilco/Desktop/codesquad/style.scss */
 .wrapper {
   padding: 200px; }
 
-/* line 4, /Users/hiwilco/Desktop/codesquad/style.scss */
+/* line 7, /Users/hiwilco/Desktop/codesquad/style.scss */
 .wrapper .question {
   padding: 10px;
   width: 200px;
@@ -10,7 +14,7 @@
   font-size: 20px;
   outline: none; }
 
-/* line 11, /Users/hiwilco/Desktop/codesquad/style.scss */
+/* line 14, /Users/hiwilco/Desktop/codesquad/style.scss */
 .wrapper .button {
   vertical-align: top;
   margin: 0px 5px;
@@ -22,14 +26,14 @@
   cursor: pointer;
   color: #040404; }
 
-/* line 22, /Users/hiwilco/Desktop/codesquad/style.scss */
+/* line 25, /Users/hiwilco/Desktop/codesquad/style.scss */
 .wrapper .button:hover {
   background-color: #ddd;
   color: #fff; }
 
-/* line 26, /Users/hiwilco/Desktop/codesquad/style.scss */
+/* line 29, /Users/hiwilco/Desktop/codesquad/style.scss */
 .wrapper .feedback {
-  margin-top: 20px;
-  font-size: 13px; }
+  margin-top: 70px;
+  font-size: 15px; }
 
 /*# sourceMappingURL=style.css.map */
