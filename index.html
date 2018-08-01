@@ -27,12 +27,13 @@
             answer[1] = Math.floor(Math.random() * 10);
             answer[2] = Math.floor(Math.random() * 10);
             
-            while(answer[0] == answer[1] || answer[0] == answer[2] || answer[1] == answer[2]){
+            while(answer[0] == answer[1] || answer[0] == answer[2] || answer[1] == answer[2] || answer[0] == 0 || answer[1] == 0 || answer[2] == 0){
                 answer[0] = Math.floor(Math.random() * 10);
                 answer[1] = Math.floor(Math.random() * 10);
                 answer[2] = Math.floor(Math.random() * 10);
             }
-        
+            
+            console.log(answer);
         }
         
         
@@ -87,6 +88,13 @@
             if(question[0] == question[1] || question[0] == question[2] || question[1] == question[2]){
                 
                 document.getElementById("feedback").innerText = "중복되지 않은 세자리 숫자를 입력해주세요.";
+                
+                return;
+            }
+            
+            if(question[0] == 0 || question[1] == 0 || question[2] == 0){
+                
+                document.getElementById("feedback").innerText = "각 자리의 숫자는 1~9까지로 입력해주세요.";
                 
                 return;
             }
