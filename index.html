@@ -16,7 +16,7 @@
         let answer=[];
         let question=[];
         
-        function setNumberCheck(){
+        function getRandomValue(){
             while(answer[0] == answer[1] || answer[0] == answer[2] || answer[1] == answer[2] || answer[0] == 0 || answer[1] == 0 || answer[2] == 0){
                 answer[0] = Math.floor(Math.random() * 10);
                 answer[1] = Math.floor(Math.random() * 10);
@@ -24,20 +24,12 @@
             }   
         }
         
-        function setNumber(){
-            answer[0] = Math.floor(Math.random() * 10);
-            answer[1] = Math.floor(Math.random() * 10);
-            answer[2] = Math.floor(Math.random() * 10);
-            
-            setNumberCheck()
-        }
-        
         
         function checkResult(strikeNumber, ballNumber) {
             if(answer.length === question.length){
                 if(strikeNumber == 3 ) {
                     document.getElementById("feedback").innerText = "3개의 숫자를 모두 맞히셨습니다! 게임 종료 (새로운 숫자로 리셋되었습니다.)";
-                    setNumber();
+                    getRandomValue();
                 } else {
                     document.getElementById("feedback").innerText = strikeNumber + " 스크라이크 " + ballNumber + " 볼";
                 }
@@ -49,13 +41,15 @@
         }
         
         function error(strikeNumber, ballNumber){
-            if(question[0] == question[1] || question[0] == question[2] || question[1] == question[2]){
-                document.getElementById("feedback").innerText = "중복되지 않은 세자리 숫자를 입력해주세요.";
-                return;
-            }
-            if(question[0] == 0 || question[1] == 0 || question[2] == 0){
-                document.getElementById("feedback").innerText = "각 자리의 숫자는 1~9까지로 입력해주세요.";
-                return;
+            if(question.length == 3){
+                if(question[0] == question[1] || question[0] == question[2] || question[1] == question[2]){
+                    document.getElementById("feedback").innerText = "중복되지 않은 세자리 숫자를 입력해주세요.";
+                    return;
+                }
+                if(question[0] == 0 || question[1] == 0 || question[2] == 0){
+                    document.getElementById("feedback").innerText = "각 자리의 숫자는 1~9까지로 입력해주세요.";
+                    return;
+                }
             }
             checkResult(strikeNumber, ballNumber);
         }
@@ -82,7 +76,7 @@
             }
         }
         
-        setNumber();
+        getRandomValue();
         
     </script>
 </html>
