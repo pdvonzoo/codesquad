@@ -13,17 +13,27 @@
         </div>
     </body>
     <script>
-        let answer=[];
-        let question=[];
         
         function getRandomAnswerValue(){
             answer = getRandomValue();
-            while(answer[0] == answer[1] || answer[0] == answer[2] || answer[1] == answer[2] || answer[0] == 0 || answer[1] == 0 || answer[2] == 0){
-                answer = getRandomValue();
+            
+            for(let i = 0; i < answer.length; i++){
+                for(let j = i+1; j < answer.length; j++){
+                    if(answer[i]==0){
+                        answer[i] = Math.floor(Math.random() * 10);
+                    } 
+                    if(answer[i] == answer[j]){
+                        answer[i] = Math.floor(Math.random() * 10);
+                    }
+                }
             }
+            
+            return answer;
         }
         
         function getRandomValue(){
+            let answer=[];
+            
             answer[0] = Math.floor(Math.random() * 10);
             answer[1] = Math.floor(Math.random() * 10);
             answer[2] = Math.floor(Math.random() * 10);
@@ -32,40 +42,44 @@
         }
         
         
-        function checkResult(strikeNumber, ballNumber) {
-            if(answer.length === question.length){
-                if(strikeNumber == 3 ) {
-                    document.getElementById("feedback").innerText = "3개의 숫자를 모두 맞히셨습니다! 게임 종료 (새로운 숫자로 리셋되었습니다.)";
-                    count++;
-                    getRandomAnswerValue();
-                } else {
-                    document.getElementById("feedback").innerText = strikeNumber + " 스크라이크 " + ballNumber + " 볼";
-                }
-                strikeNumber = 0;
-                ballNumber = 0;
+        function checkResult(strikeNumber, ballNumber, question, answer) {
+            if(strikeNumber == 3 ) {
+                document.getElementById("feedback").innerText = "3개의 숫자를 모두 맞히셨습니다! 게임 종료 (새로운 숫자로 리셋되었습니다.)";
+                getRandomAnswerValue();
             } else {
-                document.getElementById("feedback").innerText = "세자리 숫자를 입력해주세요.";
+                document.getElementById("feedback").innerText = strikeNumber + " 스크라이크 " + ballNumber + " 볼";
             }
+            strikeNumber = 0;
+            ballNumber = 0;
         }
         
-        function error(strikeNumber, ballNumber){
-            if(question.length == 3){
-                if(question[0] == question[1] || question[0] == question[2] || question[1] == question[2]){
-                    document.getElementById("feedback").innerText = "중복되지 않은 세자리 숫자를 입력해주세요.";
-                    return;
-                }
-                if(question[0] == 0 || question[1] == 0 || question[2] == 0){
-                    document.getElementById("feedback").innerText = "각 자리의 숫자는 1~9까지로 입력해주세요.";
-                    return;
-                }
+        function error(strikeNumber, ballNumber, question, answer){
+            if(question[0] == question[1] || question[0] == question[2] || question[1] == question[2]){
+                document.getElementById("feedback").innerText = "중복되지 않은 세자리 숫자를 입력해주세요.";
+                return;
             }
-            checkResult(strikeNumber, ballNumber);
+            if(question[0] == 0 || question[1] == 0 || question[2] == 0){
+                document.getElementById("feedback").innerText = "각 자리의 숫자는 1~9까지로 입력해주세요.";
+                return;
+            }
+            if(answer.length === question.length){
+                checkResult(strikeNumber, ballNumber, question, answer);
+            } else {
+                document.getElementById("feedback").innerText = "세자리 숫자를 입력해주세요.";
+                return;
+            }
         }
         
         
         function conform(){
-            let strikeNumber=0 
+            if (typeof answer == "undefined") {
+                let answer = getRandomAnswerValue();
+            }
+            console.log(answer);
+            let question=[];
+            let strikeNumber=0;
             let ballNumber=0;
+            
             question = document.getElementById("question").value.split("");
             for(let i = 0; i < 3; i++) {
                 if(answer[i] == question[i]){
@@ -74,7 +88,7 @@
                     ballNumber++;
                 }
             }
-            error(strikeNumber, ballNumber);
+            error(strikeNumber, ballNumber, question, answer);
         }
         
         
@@ -85,6 +99,12 @@
         }
         
         getRandomAnswerValue();
+        
+        
+        // 수정내용
+        // 1.전역변수 없애기
+        // 2.aswer 값 좀 더 효율적으로
+        // 3.오류코드 나누기
         
     </script>
 </html>
